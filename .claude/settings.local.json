@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(printf '\\\\n\\\\n')",
+      "Bash(npx shadcn@latest init -y)",
+      "Bash(npx:*)"
+    ]
+  }
+}
