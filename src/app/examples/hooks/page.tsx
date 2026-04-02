@@ -11,6 +11,7 @@ import {
   useWindowSize,
   useMediaQuery,
   useOnClickOutside,
+  useIsClient,
 } from 'usehooks-ts'
 import { useRef } from 'react'
 import { toast } from 'sonner'
@@ -64,6 +65,9 @@ export default function HooksPage() {
 
   // useMediaQuery
   const isMobile = useMediaQuery('(max-width: 768px)')
+
+  // 클라이언트 여부 확인 (Hydration 불일치 방지)
+  const isClient = useIsClient()
 
   // useOnClickOutside
   const boxRef = useRef<HTMLDivElement>(null)
@@ -174,15 +178,15 @@ export default function HooksPage() {
           <div className='flex gap-6 text-sm'>
             <div className='rounded-md border border-border/50 bg-muted/20 px-4 py-2 text-center'>
               <div className='text-muted-foreground'>너비</div>
-              <div className='text-xl font-bold text-primary'>{width}px</div>
+              <div className='text-xl font-bold text-primary'>{isClient ? `${width}px` : '-'}</div>
             </div>
             <div className='rounded-md border border-border/50 bg-muted/20 px-4 py-2 text-center'>
               <div className='text-muted-foreground'>높이</div>
-              <div className='text-xl font-bold text-primary'>{height}px</div>
+              <div className='text-xl font-bold text-primary'>{isClient ? `${height}px` : '-'}</div>
             </div>
             <div className='rounded-md border border-border/50 bg-muted/20 px-4 py-2 text-center'>
               <div className='text-muted-foreground'>현재 기기</div>
-              <div className='text-xl font-bold'>{isMobile ? '📱 모바일' : '🖥 데스크탑'}</div>
+              <div className='text-xl font-bold'>{isClient ? (isMobile ? '📱 모바일' : '🖥 데스크탑') : '-'}</div>
             </div>
           </div>
           <p className='mt-2 text-xs text-muted-foreground'>창 크기를 변경하면 값이 실시간으로 업데이트됩니다.</p>
