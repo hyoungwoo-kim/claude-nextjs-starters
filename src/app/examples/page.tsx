@@ -2,7 +2,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  Layers,
   FileText,
   LayoutDashboard,
   Code2,
@@ -30,16 +29,6 @@ interface Example {
 }
 
 const examples: Example[] = [
-  {
-    icon: Layers,
-    iconColor: 'text-blue-400',
-    iconBg: 'bg-blue-400/10',
-    title: '컴포넌트 쇼케이스',
-    description:
-      '모든 UI 컴포넌트의 실제 동작을 확인하고 코드 예제를 살펴보세요.',
-    tags: ['UI컴포넌트', '인터랙션'],
-    href: '/examples/components',
-  },
   {
     icon: FileText,
     iconColor: 'text-green-400',
